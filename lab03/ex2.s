@@ -1,5 +1,5 @@
 .globl main
-
+ 
 .data
 source:
     .word   3

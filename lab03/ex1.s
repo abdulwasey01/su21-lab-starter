@@ -16,7 +16,7 @@ fib:
     addi t3, t3, -1
     j fib
 finish:
-    addi a0, x0, 1
+    #addi a0, x0, 1
     addi a1, t0, 0
     ecall # print integer ecall
     addi a0, x0, 10
