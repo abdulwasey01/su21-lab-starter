@@ -76,9 +76,22 @@ main:
 # a1 is the address of the "output" array (defined above).
 # Think: why might having a1 be useful?
 f:
-    # YOUR CODE GOES HERE!
-
-    jr ra               # Always remember to jr ra after your function!
+   #loading the value of a0 to t0 (a0 is the index -3,-2,1,0,1,2,3)
+    mv t0,a0            
+   #loading address of array in t2 (starting address of output array) 
+    mv t2,a1            
+   #adding 3 to get to the correct index  (for 1st case -3+3 so we get a0 and we can now get the value aof array[0])
+    addi t0,t0,3       
+   #initializing value of t3 to 4         (temp reg to store 4)
+    addi t3,x0,4       
+   #multiplying t3 with t0 so we get the correct index everytime. like for ietrations respectively we get (0,4,8,....) and we get correct value.
+    mul t3,t0,t3       
+   #adding t3 and t2. (adding the value we get above with the address of our output array stored in t2 to get values like array[0],array[4],array[8],....)
+    add t2,t3,t2        
+   #load the word from the array into t1  (loading the value from the memory.)
+    lw a0,0(t2)         
+   # Always remember to jr ra after your function!
+    jr ra              
 
 print_int:
     mv a1, a0

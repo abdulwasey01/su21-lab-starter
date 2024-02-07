@@ -1,0 +1,7 @@
+The error was inside the maploop label where it was trying to save the address of the array in the current node but it was not doing properly. Before it was storing address in t1 by giving the instruction
+Add t1,s0,x0 and the it was incrementing the count so instead og going to the next element of array it was going to the next byte.
+Following the above instruction I fixed it but icrementing the value of temporary register by 4 so the offset to pick the next element is correct and it picks the correct element of the array. Used the instruction  “addi t5,t5,4”. After this fix it was picking the correct elements in the array.
+One error was when inside map function it was using instruction la a0,8(s0). We want to put the address of the next node in it but this was not working so insead of using load address instruction I used “lw a0, 8(s0)” to properly load the address.
+Following the above instruction below it we want to put the address of the mystery functionin a1 register so we can call it recursively but this was not working as expected. The old instruction was lw a1,0(s1) and i updated it to properly store the address. “La a1,mystery”.
+I do not know about the rest of erros as my code is working fine by doing only these changes. The output of the code is as following. As it was mentioned to not use reg s2-s11 so in the code I havent used these registers.
+
